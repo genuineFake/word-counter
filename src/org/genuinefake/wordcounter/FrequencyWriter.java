@@ -53,9 +53,9 @@ public class FrequencyWriter {
 
         try {
             String content = toWrite;
-            fileWriter = new FileWriter(fileName);
+            fileWriter = new FileWriter(fileName, true);
             bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(content);
+            bufferedWriter.write(content + "\n");
 
             System.out.println("Done");
 

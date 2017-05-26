@@ -41,13 +41,13 @@ public class WordCounter {
             }
         }
 
-        System.out.println(wordMap.size());
-        System.out.println("List of repeated word from file and their count");
-        for (Map.Entry<String, Integer> entry : wordMap.entrySet()) {
-            if (entry.getValue() > 1) {
-                System.out.println(entry.getKey() + " => " + entry.getValue());
-            }
-        }
+//        System.out.println(wordMap.size());
+//        System.out.println("List of repeated word from file and their count");
+//        for (Map.Entry<String, Integer> entry : wordMap.entrySet()) {
+//            if (entry.getValue() > 1) {
+//                System.out.println(entry.getKey() + " => " + entry.getValue());
+//            }
+//        }
     }
 
     public Map<String, Integer> getWordMap() {
