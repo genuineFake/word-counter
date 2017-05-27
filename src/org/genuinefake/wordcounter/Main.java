@@ -8,6 +8,6 @@ public class Main {
         WordCounter wordCounter = new WordCounter();
         wordCounter.countWordFrequency(fileNames);
         FrequencyWriter frequencyWriter = new FrequencyWriter(wordCounter.getWordMap());
-        frequencyWriter.writeToFiles();
+        frequencyWriter.writeWordsToFiles();
     }
 }

@@ -17,48 +17,56 @@ public class FrequencyWriter {
         this.allWordsMap = allWordsMap;
     }
 
-    public void writeToFiles() {
+    private StringBuilder[] sortWords() {
+        StringBuilder stringBuilderAG = new StringBuilder();
+        StringBuilder stringBuilderHN = new StringBuilder();
+        StringBuilder stringBuilderOU = new StringBuilder();
+        StringBuilder stringBuilderVZ = new StringBuilder();
+
         for (Map.Entry<String, Integer> e : allWordsMap.entrySet()) {
             if (e.getKey().matches("^[a-g].*$")) {
-                String toWrite = e.getKey() + " - " + e.getValue();
-                write(toWrite, 1);
+                stringBuilderAG.append(e.getKey() + "\t" + e.getValue() + "\n");
             }
             if (e.getKey().matches("^[h-n].*$")) {
-                String toWrite = e.getKey() + " - " + e.getValue();
-                write(toWrite, 2);
+                stringBuilderHN.append(e.getKey() + "\t" + e.getValue() + "\n");
             }
             if (e.getKey().matches("^[o-u].*$")) {
-                String toWrite = e.getKey() + " - " + e.getValue();
-                write(toWrite, 3);
+                stringBuilderOU.append(e.getKey() + "\t" + e.getValue() + "\n");
             }
             if (e.getKey().matches("^[v-z].*$")) {
-                String toWrite = e.getKey() + " - " + e.getValue();
-                write(toWrite, 4);
+                stringBuilderVZ.append(e.getKey() + "\t" + e.getValue() + "\n");
             }
-
         }
+        StringBuilder[] stringBuilders = {stringBuilderAG, stringBuilderHN, stringBuilderOU, stringBuilderVZ};
+        return stringBuilders;
     }
 
-    private void write(String toWrite, int i) {
+    public void writeWordsToFiles() {
+        StringBuilder[] stringBuilders = sortWords();
+
+        for (int i = 0; i < stringBuilders.length; i++) {
+            writeToFiles(stringBuilders[i], i);
+        }
+
+    }
+
+    private void writeToFiles(StringBuilder stringBuilder, int i) {
         String fileName = "";
-        if (i == 1) {
+        if (i == 0) {
             fileName = "A-G.txt";
-        } else if (i == 2) {
+        } else if (i == 1) {
             fileName = "H-N.txt";
-        } else if (i == 3) {
+        } else if (i == 2) {
             fileName = "O-U.txt";
         } else {
             fileName = "V-Z.txt";
         }
 
+
         try {
-            String content = toWrite;
-            fileWriter = new FileWriter(fileName, true);
+            fileWriter = new FileWriter(fileName);
             bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(content + "\n");
-
-            System.out.println("Done");
-
+            bufferedWriter.append(stringBuilder);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
