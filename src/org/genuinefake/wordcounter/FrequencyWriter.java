@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by fnord on 17.5.26.
+ * Writes words and their frequency to files.
  */
 public class FrequencyWriter {
     private Map<String, Integer> allWordsMap;
@@ -17,6 +17,11 @@ public class FrequencyWriter {
         this.allWordsMap = allWordsMap;
     }
 
+    /**
+     * Takes words and frequency count from the map and sorts them to StringBuilder objects.
+     *
+     * @return an array of stringbuilders
+     */
     private StringBuilder[] sortWords() {
         StringBuilder stringBuilderAG = new StringBuilder();
         StringBuilder stringBuilderHN = new StringBuilder();
@@ -50,6 +55,12 @@ public class FrequencyWriter {
 
     }
 
+    /**
+     * Writes strings to files.
+     *
+     * @param stringBuilder object to write to file
+     * @param i             the value which indicates the file
+     */
     private void writeToFiles(StringBuilder stringBuilder, int i) {
         String fileName = "";
         if (i == 0) {
