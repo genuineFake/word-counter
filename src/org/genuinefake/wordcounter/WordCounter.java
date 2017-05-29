@@ -17,6 +17,7 @@ public class WordCounter {
 
 
     public void countWordFrequency(String[] fileNames) {
+        Map<String, Integer> tempMap = new HashMap<>();
         List<MapBuilder> threadlist = new ArrayList<>();
         List<Map<String, Integer>> wordCounts = new ArrayList<>();
 
@@ -37,17 +38,16 @@ public class WordCounter {
 
         for (Map<String, Integer> wcount : wordCounts) {
             for (Map.Entry<String, Integer> entry : wcount.entrySet()) {
-                wordMap.merge(entry.getKey(), entry.getValue(), Integer::sum);
+                tempMap.merge(entry.getKey(), entry.getValue(), Integer::sum);
             }
         }
 
-//        System.out.println(wordMap.size());
-//        System.out.println("List of repeated word from file and their count");
-//        for (Map.Entry<String, Integer> entry : wordMap.entrySet()) {
-//            if (entry.getValue() > 1) {
-//                System.out.println(entry.getKey() + " => " + entry.getValue());
-//            }
-//        }
+        for (Map.Entry<String, Integer> e : tempMap.entrySet()) {
+            if (e.getValue() > 1) {
+                wordMap.put(e.getKey(), e.getValue());
+            }
+        }
+
     }
 
     public Map<String, Integer> getWordMap() {

@@ -11,7 +11,6 @@ public class UserInterface {
     public String[] start() {
         System.out.println("Enter file names separated by space: ");
         String input = scanner.nextLine();
-        String[] fileNames = input.split(" ");
-        return fileNames;
+        return input.split(" ");
     }
 }
